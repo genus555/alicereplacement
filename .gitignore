@@ -1,3 +1,5 @@
 alicereplacement/__pycache__
 store/__pycache__
 store/models/__pycache__
+store/migrations/__pycache__
+store/views/__pycache__
