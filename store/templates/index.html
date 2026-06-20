@@ -1,31 +1,53 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Bakugans</h1>
-<div class="product-grid">
-    {% for product in products %}
-    <div class="product-card">
-        <h3>{{ product.name }}</h3>
-        <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 200px;">
-        {% if product.warning %}
-            <h5 class="warning-text">{{ product.warning }}</h5>
-        {% endif %}
-        {% if product.description %}
-            <h5>{{ product.description }}</h5>
-        {% endif %}
-        {% if product.description2 %}
-            <h5>{{ product.description2 }}</h5>
-        {% endif %}
-        {% if product.description3 %}
-            <h5>{{ product.description3 }}</h5>
-        {% endif %}
-        <p>Price: {{ product.price }} HSP</p>
-        <form action="{% url 'homepage' %}" method="POST">
-            {% csrf_token %}
-            <input type="hidden" name="product" value="{{ product.id}}">
-            <button type="submit">Add to Cart</button>
-        </form>
+<div class="store-container">
+
+    <aside class="sidebar">
+        <h3>Categories</h3>
+        <ul>
+            <li><a href="{% url 'homepage' %}">All Bakugan</a></li>
+            {% for category in categories %}
+                <li>
+                    <a href="{% url 'homepage' %}?category={{ category.id }}">
+                        {{ category.name }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </aside>
+
+    <div class="product-grid">
+        {% for product in products %}
+        <div class="product-card">
+            <h3>{{ product.name }}</h3>
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 200px;">
+            {% if product.changer %}
+                <h5 class="warning-text">{{ product.changer }}</h5>
+            {% endif %}
+            {% if product.warning %}
+                <h5 class="warning-text">{{ product.warning }}</h5>
+            {% endif %}
+            {% if product.description %}
+                <h5>{{ product.description }}</h5>
+            {% endif %}
+            {% if product.description2 %}
+                <h5>{{ product.description2 }}</h5>
+            {% endif %}
+            {% if product.description3 %}
+                <h5>{{ product.description3 }}</h5>
+            {% endif %}
+            {% if product.description4 %}
+                <h5>{{ product.description4 }}</h5>
+            {% endif %}
+            <p>Price: {{ product.price }} HSP</p>
+            <form action="{% url 'homepage' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="product" value="{{ product.id}}">
+                <button type="submit">Add to Cart</button>
+            </form>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
 {% endblock %}
