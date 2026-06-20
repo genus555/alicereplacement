@@ -1,1 +1,31 @@
-<h1>Welcome to the Store</h1>
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Bakugans</h1>
+<div class="product-grid">
+    {% for product in products %}
+    <div class="product-card">
+        <h3>{{ product.name }}</h3>
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 200px;">
+        {% if product.warning %}
+            <h5 class="warning-text">{{ product.warning }}</h5>
+        {% endif %}
+        {% if product.description %}
+            <h5>{{ product.description }}</h5>
+        {% endif %}
+        {% if product.description2 %}
+            <h5>{{ product.description2 }}</h5>
+        {% endif %}
+        {% if product.description3 %}
+            <h5>{{ product.description3 }}</h5>
+        {% endif %}
+        <p>Price: {{ product.price }} HSP</p>
+        <form action="{% url 'homepage' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="product" value="{{ product.id}}">
+            <button type="submit">Add to Cart</button>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

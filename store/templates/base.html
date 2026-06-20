@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name="viewport" content="width=device-width, intial-scale=1.0">
+    <title>Swoosh Store</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <body>
+        <nav>
+            <a href="{% url 'store' %}">Home</a>
+            <a href="{% url 'cart' %}">Cart</a>
+            {% if request.session.customer %}
+                <a href="{% url ' orders' %}">Orders</a>
+                <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'signup' %}">Signup</a>
+            {% endif %}
+        </nav>
+
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+    </body>
+</html>

@@ -5,7 +5,10 @@ class Products(models.Model):
     name = models.CharField(max_length=60)
     price = models.IntegerField(default=0)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
+    warning = models.CharField(max_length=250, default='', blank=True, null=True)
     description = models.CharField(max_length=250, default='', blank=True, null=True)
+    description2 = models.CharField(max_length=250, default='', blank=True, null=True)
+    description3 = models.CharField(max_length=250, default='', blank=True, null=True)
     image = models.ImageField(upload_to='uploads/products/')
 
     @staticmethod
@@ -22,3 +25,6 @@ class Products(models.Model):
             return Products.objects.filter(category=category_id)
         else:
             return Products.get_all_products()
+    
+    def __str__(self):
+        return f"{self.category} {self.name}"

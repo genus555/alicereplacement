@@ -1,0 +1,24 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+}
+
+nav {
+    background: #2e2828;
+    margin: 0;
+}
+
+nav a {
+    color: white;
+    margin-right: 15px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.warning-text {
+    color: red;
+    font-weight: bold;
+}
