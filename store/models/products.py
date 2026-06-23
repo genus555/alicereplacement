@@ -19,12 +19,12 @@ class Products(models.Model):
     
     @staticmethod
     def get_all_products():
-        return Products.objects.all()
+        return Products.objects.all().order_by('name')
     
     @staticmethod
     def get_all_products_by_categoryid(category_id):
         if category_id:
-            return Products.objects.filter(category=category_id)
+            return Products.objects.filter(category=category_id).order_by('name')
         else:
             return Products.get_all_products()
         
