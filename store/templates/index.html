@@ -43,7 +43,7 @@
             <p>Price: {{ product.price }} HSP</p>
             <form action="{% url 'homepage' %}" method="POST">
                 {% csrf_token %}
-                <input type="hidden" name="product" value="{{ product.id}}">
+                <input type="hidden" name="product" value="{{product.id}}">
                 <button type="submit">Add to Cart</button>
             </form>
         </div>

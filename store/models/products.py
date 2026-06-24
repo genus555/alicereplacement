@@ -28,6 +28,14 @@ class Products(models.Model):
         else:
             return Products.get_all_products()
         
+    @staticmethod
+    def get_products_price_total():
+        products = Products.get_all_products()
+        total = 0
+        for product in products:
+            total += product.price
+        return total
+
     class Meta:
         verbose_name = "Product"
         verbose_name_plural = "Products"

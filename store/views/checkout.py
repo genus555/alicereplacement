@@ -14,7 +14,8 @@ class CheckOut(View):
         for product in products:
             order = Order(customer_id=customer,
                           product=product,
-                          price=product.price)
+                          price=product.price,
+                          )
             order.save()
         request.session['cart'] = {}
 
