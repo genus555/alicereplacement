@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.contrib.auth.hashers import check_password
 from store.models.customer import Customer
 from django.views import View
@@ -19,4 +19,4 @@ class CheckOut(View):
             order.save()
         request.session['cart'] = {}
 
-        return redirect('cart')
+        return render(request, 'checkout.html')

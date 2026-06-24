@@ -29,8 +29,7 @@ class Products(models.Model):
             return Products.get_all_products()
         
     @staticmethod
-    def get_products_price_total():
-        products = Products.get_all_products()
+    def get_products_price_total(products):
         total = 0
         for product in products:
             total += product.price

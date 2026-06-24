@@ -19,3 +19,6 @@ class Customer(models.Model):
     
     class Meta:
         verbose_name_plural = "Customers"
+    
+    def __str__(self):
+        return f"{self.ign} | {self.discord_name}"
