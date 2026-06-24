@@ -7,16 +7,17 @@ from store.models.orders import Order
 
 class CheckOut(View):
     def post(self, request):
-        customer = request.session.get('customer')
+        customer_id = request.session.get('customer')
         cart = request.session.get('cart')
         products = Products.get_products_by_id(list(cart.keys()))
+        customer = Customer.objects.get(id=customer_id)
 
         for product in products:
-            order = Order(customer_id=customer,
+            order = Order(customer_id=customer_id,
                           product=product,
                           price=product.price,
                           )
             order.save()
         request.session['cart'] = {}
 
-        return render(request, 'checkout.html')
+        return render(request, 'checkout.html', {'customer': customer})

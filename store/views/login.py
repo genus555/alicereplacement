@@ -16,8 +16,7 @@ class Login(View):
         customer = Customer.get_customer_by_in_game_name(ign)
         error_message = None
         if customer:
-            flag = check_password(discord_name, customer.discord_name)
-            if flag:
+            if discord_name == customer.discord_name:
                 request.session['customer'] = customer.id
                 if Login.return_url:
                     return HttpResponseRedirect(Login.return_url)
@@ -25,11 +24,19 @@ class Login(View):
                     Login.return_url = None
                     return redirect('homepage')
             else:
-                error_message = 'In game name or Discord name invalid.'
+                error_message = 'IGN or Discord name is incorrect.'
         else:
-            error_message = 'Invalid.'
-        return render(request, 'login.html', {'error': error_message})
+            error_message = 'Invalid'
+        
+        value = {
+            'ign': ign,
+            'discord_name': discord_name,
+        }
+        return render(request, 'login.html', {
+            'error': error_message,
+            'values': value
+            })
 
 def logout(request):
     request.session.clear()
-    return redirect('login')
+    return redirect('homepage')

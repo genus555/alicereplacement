@@ -2,16 +2,24 @@
 
 {% block content %}
 <div class="product-grid">
+    <h1>Total Price: {{ total_price }}HSP</h1>
+    {% if request.session.customer %}
+        <form action="{% url 'checkout' %}" method="POST">
+            {% csrf_token %}
+            <button type="submit">Checkout</button>
+        </form>
+    {% else %}
+        <div class="login-prompt">
+            <p>You must be logged in to checkout.</p>
+            <a href="{% url 'login' %}?return_url={% url 'cart' %}" class="login-prompt">Login</a>
+        </div>
+    {% endif %}
+    <h3>Bakugan in cart:</h3>
     {% for product in products %}
     <div class="product-card">
-        <h3>{{ product.name }}</h3>
+        <h3>{{ product.category }} {{ product.name }}</h3>
         <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 100px;">
     </div>
     {% endfor %}
-    <p>Total Price: {{ total_price }}HSP</p>
-    <form action="{% url 'checkout' %}" method="POST">
-        {% csrf_token %}
-        <button type="submit">Checkout</button>
-    </form>
 </div>
 {% endblock %}

@@ -22,6 +22,7 @@ class Signup(View):
         if not error_message:
             customer.discord_name = discord_name
             customer.register()
+            request.session['customer'] = customer.id
             return redirect('homepage')
         else:
             data = {
