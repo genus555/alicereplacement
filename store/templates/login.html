@@ -23,5 +23,14 @@
 
         <button type="submit">Login</button>
     </form>
+    <div class="signup-prompt">
+        <p>First time here? <a href="{% url 'signup' %}">Signup Here</a></p>
+    </div>
 </div>
 {% endblock %}
+
+<div class="login-prompt">
+    <p>You must be logged in to checkout.</p>
+    <a href="{% url 'login' %}?return_url={% url 'cart' %}" class="login-prompt">Login</a>
+    <a href="{% url 'signup' %}?return_url={% url 'cart' %}" class="signup-prompt">Sign Up</a>
+</div>

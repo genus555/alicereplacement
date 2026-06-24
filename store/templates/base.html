@@ -9,14 +9,17 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <body>
         <nav>
-            <a href="{% url 'store' %}">Home</a>
-            <a href="{% url 'cart' %}">Cart</a>
-            {% if request.session.customer %}
-                <a href="{% url 'logout' %}">Logout</a>
-            {% else %}
-                <a href="{% url 'login' %}">Login</a>
-                <a href="{% url 'signup' %}">Signup</a>
-            {% endif %}
+            <div class="nav-left">
+                <a href="{% url 'store' %}">Home</a>
+                <a href="{% url 'cart' %}">Cart</a>
+            </div>
+            <div class="nav-right">
+                {% if request.session.customer %}
+                    <a href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                    <a href="{% url 'login' %}">Login</a>
+                {% endif %}
+            </div>
         </nav>
 
         <main>

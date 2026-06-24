@@ -1,17 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Alice Replacement Project</h1>
 <div class="store-container">
 
     <aside class="sidebar">
-        <h3>Categories</h3>
-        <ul>
-            <li><a href="{% url 'homepage' %}">All Bakugan</a></li>
+        <ul class="category-list">
+            <li>
+                <a href="{% url 'homepage' %}" class="category-item">All Attributes:</a>
+            </li>
             {% for category in categories %}
                 <li>
-                    <a href="{% url 'homepage' %}?category={{ category.id }}">
-                        {{ category.name }}
+                    <a href="{% url 'homepage' %}?category={{ category.id }}" class="category-item">
+                        {% if category.image %}
+                            <img src="{{ category.image.url }}" alt="{{ category.name }}" class="category-icon">
+                        {% endif %}
+                        <span>{{ category.name }}</span>
                     </a>
                 </li>
             {% endfor %}
@@ -19,6 +22,7 @@
     </aside>
 
     <div class="product-grid">
+        <h1>Alice Replacement Project</h1>
         {% for product in products %}
         <div class="product-card">
             <h3>{{ product.name }}</h3>

@@ -1,17 +1,40 @@
 body {
-    font-family: sans-serif;
+    font-family: 'russo one';
+    font-size: 20px;
+    text-transform: uppercase;
     margin: 0;
 }
 
 nav {
-    background: #2e2828;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    padding: 10px;
+    height: fit-content;
+    z-index: 1000;
+    background: #000000;
     margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 nav a {
     color: white;
-    margin-right: 15px;
     text-decoration: none;
+
+    font-family: 'russo one';
+    font-weight: bold;
+    font-size: 25px;
+    text-transform: uppercase;
+}
+
+.nav-left a, .nav-right a {
+    margin-right: 15px;
+}
+
+.nav-right a:last-child {
+    margin-right: 0;
 }
 
 nav a:hover {
@@ -28,11 +51,49 @@ nav a:hover {
     align-items: flex-start;
 }
 
+.product-grid {
+    margin: 8px;
+}
+
 .sidebar {
-    width: 200px;
-    padding: 20px;
+    width: fit-content;
+    min-width: 180px;
+    padding: 15px;
     position: -webkit-sticky;
     position: sticky;
-    top: 20px;
-    height: fit-content;
+    top: 49px;
+    height: calc(100vh - 49px);
+    overflow-y: auto;
+    background: #696262;
+}
+
+.category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.category-list li {
+    margin-bottom: 12px;
+}
+
+.category-item {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 20px;
+    transition: transform 0.2s;
+}
+
+.category-item:hover {
+    color: aqua;
+    transform: translateX(5px);
+}
+
+.category-icon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    margin-right: 10px;
 }
