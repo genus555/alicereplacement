@@ -17,6 +17,11 @@ class Index(View):
         else:
             cart = {product: 1}
         request.session['cart'] = cart
+
+        return_url = request.GET.get('return_url')
+        if return_url:
+            return redirect(return_url)
+        
         return redirect('homepage')
     
     def get(self, request):
@@ -29,10 +34,14 @@ def store(request):
     products = None
     categories = Category.get_all_categories()
     categoryID = request.GET.get('category')
+    search_query = request.GET.get('search')   
     if categoryID:
         products = Products.get_all_products_by_categoryid(categoryID)
     else:
         products = Products.get_all_products()
+
+    if search_query:
+        products = products.filter(name__icontains=search_query)
     
     data = {}
     data['products'] = products

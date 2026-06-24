@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="product-grid">
-    <h1>Total Price: {{ total_price }}HSP</h1>
+    <h1>Total Price: {{ total_price }} HSP</h1>
     {% if request.session.customer %}
         <form action="{% url 'checkout' %}" method="POST">
             {% csrf_token %}
@@ -20,6 +20,12 @@
     <div class="product-card">
         <h3>{{ product.category }} {{ product.name }}</h3>
         <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 100px;">
+        <form action="{% url 'homepage' %}?return_url={% url 'cart' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="product" value="{{ product.id }}">
+            <input type="hidden" name="remove" value="True">
+            <button type="submit">Remove</button>
+        </form>
     </div>
     {% endfor %}
 </div>

@@ -4,4 +4,5 @@ store/models/__pycache__
 store/migrations/__pycache__
 store/views/__pycache__
 bakugans/
+attributes/
 TODO

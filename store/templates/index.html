@@ -6,7 +6,7 @@
     <aside class="sidebar">
         <ul class="category-list">
             <li>
-                <a href="{% url 'homepage' %}" class="category-item">All Attributes:</a>
+                <a href="{% url 'homepage' %}" class="category-name">Attributes:</a>
             </li>
             {% for category in categories %}
                 <li>
@@ -21,38 +21,55 @@
         </ul>
     </aside>
 
-    <div class="product-grid">
-        <h1>Alice Replacement Project</h1>
-        {% for product in products %}
-        <div class="product-card">
-            <h3>{{ product.name }}</h3>
-            <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 200px;">
-            {% if product.changer %}
-                <h5 class="warning-text">{{ product.changer }}</h5>
-            {% endif %}
-            {% if product.warning %}
-                <h5 class="warning-text">{{ product.warning }}</h5>
-            {% endif %}
-            {% if product.description %}
-                <h5>{{ product.description }}</h5>
-            {% endif %}
-            {% if product.description2 %}
-                <h5>{{ product.description2 }}</h5>
-            {% endif %}
-            {% if product.description3 %}
-                <h5>{{ product.description3 }}</h5>
-            {% endif %}
-            {% if product.description4 %}
-                <h5>{{ product.description4 }}</h5>
-            {% endif %}
-            <p>Price: {{ product.price }} HSP</p>
-            <form action="{% url 'homepage' %}" method="POST">
-                {% csrf_token %}
-                <input type="hidden" name="product" value="{{product.id}}">
-                <button type="submit">Add to Cart</button>
+    <div class="shop">
+        <h1 class="shop-name">Alice Replacement Project</h1>
+
+        <div class="search-container">
+            <form action="{% url 'homepage' %}" method="GET" class="search-form">
+                {% if request.GET.category %}
+                    <input type="hidden" name="category" value="{{ request.GET.category }}">
+                {% endif %}
+                <input type="text" name="search" class="search-input" placeholder="Search Bakugan" value="{{ request.GET.search|default:'' }}">
+                <button type="submit" class="search-btn">Search</button>
             </form>
         </div>
-        {% endfor %}
-    </div>
+
+        <div class="product-grid">
+            {% for product in products %}
+            <div class="product-card" id="product-{{ product.id }}">
+                <h3 class="regular-text">{{ product.name }}</h3>
+                <img class="product-img" src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 200px;">
+                {% if product.changer %}
+                <h5 class="warning-text">{{ product.changer }}</h5>
+                {% endif %}
+                {% if product.warning %}
+                <h5 class="warning-text">{{ product.warning }}</h5>
+                {% endif %}
+                {% if product.description %}
+                <h5 class="regular-text">{{ product.description }}</h5>
+                {% endif %}
+                {% if product.description2 %}
+                <h5 class="regular-text">{{ product.description2 }}</h5>
+                {% endif %}
+                {% if product.description3 %}
+                <h5 class="regular-text">{{ product.description3 }}</h5>
+                {% endif %}
+                {% if product.description4 %}
+                <h5 class="regular-text">{{ product.description4 }}</h5>
+                {% endif %}
+                {% if product.id|slugify in request.session.cart %}
+                    <div class="added-to-cart">
+                        <span class="checkmark">✓</span>In Cart
+                    </div>
+                {% else %}
+                    <form action="{% url 'homepage' %}?return_url={% url 'homepage' %}?search={{ request.GET.search|default:'' }}%26category={{ request.GET.category|default:'' }}%23product-{{ product.id }}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="product" value="{{product.id}}">
+                        <button type="submit">Add to Cart</button>
+                    </form>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
 </div>
 {% endblock %}

@@ -41,19 +41,7 @@ nav a:hover {
     text-decoration: underline;
 }
 
-.warning-text {
-    color: red;
-    font-weight: bold;
-}
 
-.store-container {
-    display: flex;
-    align-items: flex-start;
-}
-
-.product-grid {
-    margin: 8px;
-}
 
 .sidebar {
     width: fit-content;
@@ -86,7 +74,22 @@ nav a:hover {
     transition: transform 0.2s;
 }
 
+.category-name {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 25px;
+    font-weight: bold;
+    transition: transform 0.2s;
+}
+
 .category-item:hover {
+    color: aqua;
+    transform: translateX(5px);
+}
+
+.category-name:hover {
     color: aqua;
     transform: translateX(5px);
 }
@@ -96,4 +99,78 @@ nav a:hover {
     height: 30px;
     object-fit: contain;
     margin-right: 10px;
+}
+
+
+
+.warning-text {
+    color: red;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.product-img,
+.regular-text {
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.store-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+.shop-name {
+    margin: 10px;
+}
+
+.product-grid {
+    margin: 10px;
+}
+
+.product-card {
+    padding: 15px;
+}
+
+.checkmark {
+    color: #10f15b;
+}
+
+
+
+.search-container {
+    margin: 10px;
+    display: flex;
+}
+
+.search-form {
+    display: flex;
+    width: 100%;
+    max-width: 500px;
+}
+
+.search-input {
+    flex-grow: 1;
+    font-size: 12px;
+    border: 2px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+}
+
+.search-input:focus {
+    border-color: #9c4848
+}
+
+.search-btn {
+    font-size: 12px;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+.search-btn:hover {
+    background: #03567c;
 }
