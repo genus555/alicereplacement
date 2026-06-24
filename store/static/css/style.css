@@ -3,6 +3,7 @@ body {
     font-size: 20px;
     text-transform: uppercase;
     margin: 0;
+    color: white;
 }
 
 nav {
@@ -12,11 +13,47 @@ nav {
     padding: 10px;
     height: fit-content;
     z-index: 1000;
-    background: #000000;
     margin: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    background: rgba(20, 20, 20, 0.95);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+    transition: background 0.4s ease-in-out;
+}
+
+nav.category-pyrus {
+    background: rgba(30, 4, 4, 0.90);
+    border-bottom: 1px solid rgba(255, 51, 51, 0.25);
+}
+
+nav.category-haos {
+    background: rgba(28, 24, 6 , 0.90);
+    border-bottom: 1px solid rgba(218, 165, 32, 0.25);
+}
+
+nav.category-aquos {
+    background: rgba(4, 10, 30, 0.90);
+    border-bottom: 1px solid rgba(0, 191, 255, 0.25);
+}
+
+nav.category-darkus {
+    background: rgba(18, 4, 28, 0.90);
+    border-bottom: 1px solid rgba(186, 85, 211, 0.25);
+}
+
+nav.category-ventus {
+    background: rgba(4, 26, 12, 0.90);
+    border-bottom: 1px solid rgba(50, 205, 50, 0.25);
+}
+
+nav.category-subterra {
+    background: rgba(24, 14, 6, 0.90);
+    border-bottom: 1px solid rgba(139, 69, 19, 0.25);
 }
 
 nav a {
@@ -25,12 +62,18 @@ nav a {
 
     font-family: 'russo one';
     font-weight: bold;
-    font-size: 25px;
+    font-size: 40px;
     text-transform: uppercase;
 }
 
 .nav-left a, .nav-right a {
     margin-right: 15px;
+    transition: transform 0.2s;
+}
+
+.nav-left a:hover, .nav-right a:hover {
+    color: rgb(60, 50, 114);
+    transform: translateX(5px);
 }
 
 .nav-right a:last-child {
@@ -52,7 +95,11 @@ nav a:hover {
     top: 49px;
     height: calc(100vh - 49px);
     overflow-y: auto;
-    background: #696262;
+    
+    background-image: url('/static/assets/category-background.jpg');
+    background-size: cover;
+    background-position: right center;
+    background-repeat: no-repeat;
 }
 
 .category-list {
@@ -111,8 +158,7 @@ nav a:hover {
     margin-bottom: 10px;
 }
 
-.product-img,
-.regular-text {
+.product-img, .regular-text {
     padding: 0;
     margin-top: 0;
     margin-bottom: 10px;
@@ -121,6 +167,12 @@ nav a:hover {
 .store-container {
     display: flex;
     align-items: flex-start;
+
+    background-image: url('/static/assets/header-background.jpg');
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .shop-name {

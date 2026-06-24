@@ -34,9 +34,15 @@ def store(request):
     products = None
     categories = Category.get_all_categories()
     categoryID = request.GET.get('category')
-    search_query = request.GET.get('search')   
+    search_query = request.GET.get('search')
+    current_category = None  
     if categoryID:
         products = Products.get_all_products_by_categoryid(categoryID)
+        try:
+            category_obj = Category.objects.get(id=categoryID)
+            current_category = category_obj.name.lower()
+        except Category.DoesNotExist:
+            pass
     else:
         products = Products.get_all_products()
 
@@ -46,5 +52,6 @@ def store(request):
     data = {}
     data['products'] = products
     data['categories'] = categories
+    data['current_category'] = current_category
 
     return render(request, 'index.html', data)
