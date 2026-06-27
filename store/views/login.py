@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.views import View
 from store.models.customer import Customer
-from django.contrib.auth.hashers import check_password
+import logging
+
+logger = logging.getLogger('django')
 
 class Login(View):
     return_url = None
@@ -18,6 +20,7 @@ class Login(View):
         if customer:
             if discord_name == customer.discord_name:
                 request.session['customer'] = customer.id
+                logger.info(f"Login sucessful: IGN: \"{discord_name}\" | Discord Name: \"{ign}\"")
                 if Login.return_url:
                     return HttpResponseRedirect(Login.return_url)
                 else:
@@ -25,8 +28,10 @@ class Login(View):
                     return redirect('homepage')
             else:
                 error_message = 'IGN or Discord name is incorrect.'
+                logger.warning(f"Login Discord Name Wrong. Attempted Values: IGN: \"{discord_name}\" | Discord Name: \"{ign}\"")
         else:
             error_message = 'Invalid'
+            logger.warning(f"Login Invalid. Attempted Values: IGN: \"{discord_name}\" | Discord Name: \"{ign}\"")
         
         value = {
             'ign': ign,

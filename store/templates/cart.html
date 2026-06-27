@@ -11,8 +11,8 @@
     {% else %}
         <div class="login-prompt">
             <p>You must be logged in to checkout.</p>
-            <a href="{% url 'login' %}?return_url={% url 'cart' %}" class="login-prompt">Login</a>
-            <a href="{% url 'signup' %}?return_url={% url 'cart' %}" class="signup-prompt">Sign Up</a>
+            <a href="{% url 'login' %}?return_url={% url 'cart' %}" class="links">Login</a>
+            <a href="{% url 'signup' %}?return_url={% url 'cart' %}" class="links">Sign Up</a>
         </div>
     {% endif %}
     <h3>Bakugan in cart:</h3>

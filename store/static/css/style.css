@@ -4,7 +4,26 @@ body {
     text-transform: uppercase;
     margin: 0;
     color: white;
+
+    background-image: url('/static/assets/general-background.jpg');
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
+
+.links {
+    color: white;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.links:hover {
+    color: aqua;
+    transform: translateX(5px);
+}
+
+
 
 nav {
     position: -webkit-sticky;
@@ -167,12 +186,6 @@ nav a:hover {
 .store-container {
     display: flex;
     align-items: flex-start;
-
-    background-image: url('/static/assets/header-background.jpg');
-    background-size: cover;
-    background-position: top center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
 }
 
 .shop-name {

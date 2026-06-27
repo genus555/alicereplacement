@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from store.models.customer import Customer
 from django.views import View
+import logging
+
+logger = logging.getLogger('django')
 
 class Signup(View):
     def get(self, request):
@@ -23,6 +26,7 @@ class Signup(View):
             customer.discord_name = discord_name
             customer.register()
             request.session['customer'] = customer.id
+            logger.info(f"New user registered: IGN: \"{discord_name}\" | Discord Name: \"{ign}\"")
             return redirect('homepage')
         else:
             data = {
@@ -39,4 +43,5 @@ class Signup(View):
             error_message = "Please enter your discord name."
         elif customer.isExists():
             error_message = "This in game name is already registered"
+            logger.warning(f"Already registered. Attempted values: IGN: \"{customer.discord_name}\" | Discord Name: \"{customer.ign}\"")
         return error_message

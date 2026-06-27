@@ -6,3 +6,5 @@ store/views/__pycache__
 bakugans/
 attributes/
 TODO
+go_logger/go_all_logs.txt
+go_logger/warning_logs.txt
