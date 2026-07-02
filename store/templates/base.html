@@ -12,6 +12,7 @@
             <div class="nav-left">
                 <a href="{% url 'store' %}">Home</a>
                 <a href="{% url 'cart' %}">Cart</a>
+                <a href="{% url 'orders' %}">Orders</a>
             </div>
             <div class="nav-right">
                 {% if request.session.customer %}

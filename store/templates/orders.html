@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="product-grid">
+    {% if customer %}
+        {% if not orders %}
+            <p>You have no pending orders.</p>
+        {% else %}
+            <div class="product-grid">
+                <h3>Ordered Bakugans</h3>
+                {% for order in orders %}
+                <div class="product-card">
+                    <h3>{{ order.product.category }} {{ order.product.name }}</h3>
+                    <img src="{{ order.product.image.url }}" alt="{{ order.product.name }}" style="width: 100px;">
+                    <form action="{% url 'orders' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="order" value="{{ order.id }}">
+                        <input type="hidden" name="remove" value="True">
+                        <button type="submit">Remove</button>
+                    </form>
+                </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% else %}
+        <div class="login-prompt">
+            <p>Login to check your orders.</p>
+            <a href="{% url 'login' %}?return_url={% url 'orders' %}" class="links">Login</a>
+            <a href="{% url 'signup' %}?return_url={% url 'orders' %}" class="links">Sign Up</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
